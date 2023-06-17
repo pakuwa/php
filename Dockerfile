@@ -2,15 +2,14 @@ ARG PHP_VERSION
 FROM php:${PHP_VERSION}-fpm-alpine
 
 RUN apk --update add --no-cache --virtual .build-deps autoconf \
-        g++ libtool make curl-dev gettext-dev linux-headers libzip-dev \
+        g++ libtool make curl-dev gettext-dev linux-headers libzip-dev zip \
         libmcrypt-dev libmcrypt re2c freetype freetype-dev libpng \
         libpng-dev libjpeg-turbo libjpeg-turbo-dev libwebp-dev
 
 RUN pecl install redis && \
     pecl install mcrypt && \
-    docker-php-ext-install pdo_mysql mysqli opcache bcmath && \
-    docker-php-ext-configure zip --with-libzip=/usr/include && \
-    docker-php-ext-enable redis mcrypt \
+    docker-php-ext-install pdo_mysql mysqli opcache bcmath zip && \
+    docker-php-ext-enable redis mcrypt
 
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
     && docker-php-ext-install gd \
