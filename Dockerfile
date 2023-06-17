@@ -7,7 +7,7 @@ RUN apk --update add --no-cache --virtual .build-deps autoconf \
 
 RUN pecl install redis && \
     pecl install mcrypt && \
-    docker-php-ext-install pdo_mysql mysqli mbstring gd opcache bcmath && \
+    docker-php-ext-install pdo_mysql mysqli gd opcache bcmath && \
     docker-php-ext-configure zip --with-libzip=/usr/include && \
     docker-php-ext-enable redis mcrypt
 
