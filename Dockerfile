@@ -1,7 +1,8 @@
 ARG PHP_VERSION
 FROM php:${PHP_VERSION}-fpm-alpine
 
-RUN apk --update add --no-cache --virtual .build-deps autoconf g++ libtool make curl-dev gettext-dev linux-headers libzip-dev \
+RUN apk --update add --no-cache --virtual .build-deps autoconf \
+        g++ libtool make curl-dev gettext-dev linux-headers libzip-dev
 
 RUN pecl install redis && \
     pecl install mcrypt && \
