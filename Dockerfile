@@ -13,7 +13,7 @@ RUN pecl install redis && \
 
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
     && docker-php-ext-install gd \
-    && apk del freetype-dev libpng-dev libjpeg-turbo-dev \
+    && apk del freetype-dev libpng-dev libjpeg-turbo-dev
 
 RUN apk del .build-deps \
     && docker-php-source delete
