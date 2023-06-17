@@ -12,7 +12,7 @@ RUN pecl install redis && \
 
 RUN docker-php-ext-configure gd --with-webp --with-freetype --with-jpeg; \
     NPROC=$(getconf _NPROCESSORS_ONLN); \
-    docker-php-ext-install "-j${NPROC}" gd; \
+    docker-php-ext-install "-j${NPROC}" gd;
 
 RUN apk del .build-deps \
     && docker-php-source delete
