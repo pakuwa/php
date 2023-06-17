@@ -9,13 +9,9 @@ RUN apk --update add --no-cache --virtual .build-deps autoconf \
 RUN pecl install redis && docker-php-ext-enable redis \
     && docker-php-ext-install pdo_mysql mysqli opcache bcmath zip
 
-RUN docker-php-ext-configure gd \
-        --with-gd \
-        --with-freetype-dir=/usr/include/ \
-        --with-png-dir=/usr/include/ \
-        --with-jpeg-dir=/usr/include/ \
-      && docker-php-ext-install gd \
-      && apk del --no-cache freetype freetype-dev libpng libpng-dev libjpeg-turbo libjpeg-turbo-dev libwebp-dev
+RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-webp && \
+    docker-php-ext-install gd
+#      && apk del --no-cache freetype freetype-dev libpng libpng-dev libjpeg-turbo libjpeg-turbo-dev libwebp-dev
 
 # Install composer and change it's cache home
 RUN curl -o /usr/bin/composer https://getcomposer.org/download/2.5.8/composer.phar \
