@@ -1,0 +1,38 @@
+name: Build PHP Image
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  SECRET_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  php-80:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - uses: ./.github/actions
+        with:
+          version: '8.0'
+          secret_github_token: ${{ env.SECRET_GITHUB_TOKEN }}
+  php-81:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - uses: ./.github/actions
+        with:
+          version: '8.1'
+          secret_github_token: ${{ env.SECRET_GITHUB_TOKEN }}
+  php-82:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - uses: ./.github/actions
+        with:
+          version: '8.2'
+          secret_github_token: ${{ env.SECRET_GITHUB_TOKEN }}
