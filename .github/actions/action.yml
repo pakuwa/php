@@ -13,7 +13,8 @@ runs:
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v1
       with:
-        platforms: linux/amd64,linux/arm64
+#        platforms: linux/amd64,linux/arm64
+        platforms: linux/amd64
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
     - name: Login to Github Container registry
@@ -26,6 +27,7 @@ runs:
       uses: docker/build-push-action@v4
       with:
         build-args: PHP_VERSION=${{ inputs.version }}
-        platforms: linux/amd64,linux/arm64
+#        platforms: linux/amd64,linux/arm64
+        platforms: linux/amd64
         push: true
         tags: ghcr.io/${{ github.actor }}/php:${{ inputs.version }}
